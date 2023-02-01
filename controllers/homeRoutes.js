@@ -11,10 +11,10 @@ router.get('/', async (req, res) => {
           {model: Comment}
       ],
     });
-
+    //console.log(postData);
     // Serialize data so the template can read it
     const posts = postData.map((post) => post.get({ plain: true }));
-
+  
     // Pass serialized data and session flag into template
     res.render('homepage', { 
       posts, 
@@ -29,17 +29,27 @@ router.get('/post/:id', async (req, res) => {
   try {
     const postData = await Post.findByPk(req.params.id, {
       include: [
-             {model:Comment},
-             {model: User}
-            ],
+             {model: User,
+            },
+            {
+              model:Comment,
+              include: 
+                {
+                model:User,
+                attributes:['name'],
+              },
+          },
+        ],
     });
 
     const post = postData.get({ plain: true });
-
+   // console.log(post);
+   console.log("the blog post by id",post);
     res.render('post', {
       ...post,
       logged_in: req.session.logged_in
     });
+   
   } catch (err) {
     res.status(404).json(err);
   }
@@ -60,6 +70,29 @@ router.get('/dashboard', withAuth, async (req, res) => {
     res.render('dashboard', {
       ...user,
       logged_in: true
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.get('/post/:id/edit', withAuth, async (req, res) => { 
+  console.log("Edit request came");
+  try {
+    const postData = await Post.findByPk(req.params.id, {
+       include: [
+       { model: User,
+       attributes: { exclude: ['password']}}
+       ],
+    });
+
+    const post = postData.get({ plain: true });
+    console.log(post);
+    
+    res.render('edit', {
+      ...post,
+      logged_in: req.session.logged_in,
+      //isOwner: req.session.user_id === post.user_id,
     });
   } catch (err) {
     res.status(500).json(err);

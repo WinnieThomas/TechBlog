@@ -1,0 +1,17 @@
+<div>
+    <form class="form update-post-form">
+    <div class="form-group">
+        <label for="project-name">Title:</label>
+        <textarea class="form-input" id="update-post-title" name="update-post-title">{{title}}</textarea>
+    </div>
+    <div class="form-group">
+        <label for="project-desc">Description:</label>
+        <textarea class="form-input" id="update-postdesc" name="update-postdesc">{{{body}}}</textarea>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-sm btn-danger update-post" data-id="{{id}}">UPDATE</button>
+    </div>
+    </form>
+</div>
+
+<script src="/js/edit.js"></script>   
