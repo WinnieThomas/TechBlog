@@ -48,4 +48,5 @@ THEN I am able to view comments but I am prompted to log in again before I can a
 ```
 ## The screenshot of the deployed application
 
-![Image1](
+![Image1](https://github.com/WinnieThomas/TechBlog/blob/main/assets/TechBlog1.png?raw=true)
+
