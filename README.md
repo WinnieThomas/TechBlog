@@ -50,3 +50,10 @@ THEN I am able to view comments but I am prompted to log in again before I can a
 
 ![Image1](https://github.com/WinnieThomas/TechBlog/blob/main/assets/TechBlog1.png?raw=true)
 
+![Image2](https://github.com/WinnieThomas/TechBlog/blob/main/assets/TechBlog2.png?raw=true)
+
+![Image](https://github.com/WinnieThomas/TechBlog/blob/main/assets/TechBlog3.png?raw=true)
+
+![Image](https://github.com/WinnieThomas/TechBlog/blob/main/assets/TechBlog4.png?raw=true)
+
+![Image](https://github.com/WinnieThomas/TechBlog/blob/main/assets/TechBlog5.png?raw=true)
