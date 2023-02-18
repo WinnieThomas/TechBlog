@@ -11,7 +11,7 @@ Comment.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    message:{
+    comment_body:{
       type: DataTypes.STRING,
     },
     post_id: {
@@ -21,13 +21,20 @@ Comment.init(
         key: 'id',
       },
     },
+    user_id: {
+      type: DataTypes.INTEGER,
+      references: {
+          model: 'user',
+          key: 'id',
+      },
+  },
   },
   {
     sequelize,
-    timestamps: false,
+    timestamps: true,
     freezeTableName: true,
     underscored: true,
-    modelName: 'Comment',
+    modelName: 'comment',
   }
 );
 
