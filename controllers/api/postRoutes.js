@@ -22,6 +22,9 @@ router.get('/:id',async (req, res) => {
     const PostData = await Post.findByPk(req.params.id, {
       include: [{model:Comment}],
  });
+
+ console.log(PostData);
+ 
  if(!PostData){
   res.status(404).json({message:'Post not found with the id'});
   return;
@@ -33,20 +36,25 @@ router.get('/:id',async (req, res) => {
 });
 
 router.put('/:id',async (req, res) => {
-  
+ try{
   const newData = {
     title: req.body.title,
     body:req.body.body
   }
-   try {
-    const PostData = await Post.update(newData, {
+  console.log("updated data =",newData);
+   
+    const postData = await Post.update(newData, {
       where: {
         id: req.params.id,
+        user_id: req.session.user_id,
       },
     });
+
     
-    res.status(200).json(PostData);
-  } catch (err) {
+    res.status(200).json(postData);
+    console.log("postData in the update route:",postData);
+  } 
+  catch (err) {
     res.status(500).json(err);
   }
 });
@@ -55,8 +63,7 @@ router.post('/', withAuth, async (req, res) => {
   try {
     const newPost = await Post.create({
       title: req.body.title,
-      description: req.body.description,
-      articleBody:req.body.articleBody,  
+      body: req.body.body, 
       user_id: req.session.user_id,
     });
 

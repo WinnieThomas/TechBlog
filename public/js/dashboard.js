@@ -37,6 +37,7 @@ const delButtonHandler = async (event) => {
   }
 };
 
+
 document
   .querySelector('.new-project-form')
   .addEventListener('submit', newFormHandler);
@@ -44,3 +45,5 @@ document
 document
   .querySelector('.project-list')
   .addEventListener('click', delButtonHandler);
+
+  
